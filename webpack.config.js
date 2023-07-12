@@ -33,6 +33,21 @@ module.exports = {
                     filename: "images/[hash][ext]",  //.[ext]とはしない
                 }
             },
+            //pug
+            {
+                test: /\.pug$/,
+                use: [
+                    {
+                        loader: "html-loader",
+                    },
+                    {
+                        loader: "pug-html-loader",
+                        options: {
+                            pretty: true,
+                        }
+                    },
+                ],
+            },
         ],
     },
     plugins: [
@@ -40,7 +55,12 @@ module.exports = {
             filename: './stylesheets/style.css',
         }),
         new HtmlWebpackPlugin({
-            template: "./src/templates/index.html",
+            template: "./src/templates/index.pug",
+            filename: "index.html",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/templates/access.pug",
+            filename: "access.html",
         }),
         new CleanWebpackPlugin(),
     ],
