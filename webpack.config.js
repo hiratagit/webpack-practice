@@ -25,6 +25,14 @@ module.exports = {
                     },
                 ],
             },
+            // Image
+            {
+                test: /\.(jpg|png|gif|svg)$/,
+                type: "asset/resource",     // souceではなく、resouce
+                generator: {             
+                    filename: "images/[hash][ext]",  //.[ext]とはしない
+                }
+            },
         ],
     },
     plugins: [
