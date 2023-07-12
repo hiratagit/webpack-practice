@@ -4,24 +4,33 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
+    mode: "development", // "production"
     entry: "./src/scripts/index.js",
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "scripts/main.js",
+    },
+    devServer: {
+        // static: "./dist",
+        static: path.resolve(__dirname, "src"),
     },
     resolve: {
         extensions: [".js", ".glsl"],   // 拡張子の記述を省く事が出来る
     },
     module: {
         rules: [
+            // css, sass
             {
-                test: /\.css$/,
+                test: /\.(css|sass|scss)$/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader, // "style-loader"から変更する
                     },
                     {
                         loader: "css-loader",
+                    },
+                    {
+                        loader: "sass-loader",
                     },
                 ],
             },
