@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     mode: "development", // "production"
+    devtool: "source-map", // デバッグでjsコードを読みやすくする、必須ではない
     entry: "./src/scripts/index.js",
     output: {
         path: path.resolve(__dirname, "./dist"),
@@ -19,8 +20,25 @@ module.exports = {
     },
     module: {
         rules: [
+            // Javascriptのコンパイル babelローダー
+            {
+                test: /\.js$/,           // 拡張子が.jsで終わるファイルに対して
+                exclude: /node_modules/, // node_modulesディレクトリ以下のjsコンパイルは避ける
+                use: [
+                    { 
+                        loader: "babel-loader",
+                        options: {
+                            presets: [
+                                [ "@babel/preset-env", { "targets" : "> 0.25%, not dead" } ]
+                            ],
+                        }
+                    },
+                ],
+
+            },
             // css, sass
             {
+               
                 test: /\.(css|sass|scss)$/,
                 use: [
                     {
@@ -28,6 +46,9 @@ module.exports = {
                     },
                     {
                         loader: "css-loader",
+                        options: {
+                            sourceMap: false,  // scssのソースマップが得られるがファイルサイズが大きくなるので一旦false
+                        }
                     },
                     {
                         loader: "sass-loader",
