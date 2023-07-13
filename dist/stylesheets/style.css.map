@@ -1,1 +1,0 @@
-{"version":3,"file":"./stylesheets/style.css","mappings":";;;AAAA;EACI;EACA;EACA;EACA;AACJ;;AAEA;EACI;AACJ,C","sources":["webpack://webpack-study/./src/stylesheets/style.scss"],"sourcesContent":["*{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: rgb(255, 0, 47);\r\n}\r\n\r\nh1 {\r\n    color: green;\r\n}"],"names":[],"sourceRoot":""}

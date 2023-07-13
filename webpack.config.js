@@ -59,6 +59,7 @@ module.exports = {
             {
                 test: /\.(jpg|png|gif|svg)$/,
                 type: "asset/resource",     // souceではなく、resouce
+                loader: "image-webpack-loader",
                 generator: {             
                     filename: "images/[hash][ext]",  //.[ext]とはしない
                 }
